@@ -1,13 +1,9 @@
 # FATEC_DES_WEB_2_2022_Avaliacao2
 
+
+
 ## Segunda Avaliação DESENVOLVIMENTO WEB II
 
-
-
-## Como Realizar esta avaliação ?
-
-1. Crie um repositório no seu github com o nome "<b>FATEC_DES_WEB_2_2022_Avaliacao2</b>"
-2. Publicar no Teams o repositório que será avaliado pelo professor Orlando.
 
 
 ##  Código
