@@ -14,7 +14,7 @@
     <div class="container">
         <div class="py-5 text-center">
             <form action="parametros_post_02.php" method="post">
-                <label for="name">Nome do Produto:</label><br>
+                <label for="namep">Nome do Produto:</label><br>
                 <input type="text" id="nomep" name="nomep"><br><br>
                 <label for="quantidade">Quantidade:</label><br>
                 <input type="numeric" id="quantidade" name="quantidadees"><br><br>

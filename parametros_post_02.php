@@ -15,6 +15,8 @@
     <div class="container">
         <div class="py-5 text-center">
             <?php
+            include ('./dados_banco.php');
+            
             function validar_post($dado_enviado){
                 if(isset($dado_enviado) and $dado_enviado <> ""){
                     return TRUE;
@@ -31,9 +33,10 @@
                 echo 'Preço: '.$_POST['valuep'];
                 echo '<br><br>';
                 echo 'Características: '.$_POST['featuresp'];
-                /*
-                Inserir os dados no banco de dados MySQL
-                */
+                $mysqli->query ("INSERT INTO produtos (nome, quantidade, preco, caracteristica) 
+                VALUES (".$_POST['nomep'].",".$_POST['quantidadees'].",".$_POST['valuep'].",".$_POST['featuresp'].")");
+               
+                
             }
 
             ?>
