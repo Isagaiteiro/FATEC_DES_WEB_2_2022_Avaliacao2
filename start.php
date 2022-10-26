@@ -1,12 +1,11 @@
 <!--2) Se for feito o login, aparece as informações de cadastro e sair, na tela-->
 
 <?php
-    session_start();
-
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"]!== true){
-        echo("Location: index.php");
-        exit;
+    
+    if(!isset($_SESSION)){
+        session_start();
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,7 +27,7 @@
             </h2>
             <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex recusandae eos non saepe veniam, unde hic natus dignissimos molestias nulla sint et quos esse quo voluptatibus? Voluptatibus explicabo dolorem delectus!</p>
         </div>
-           
+
             <a href="logout.php">Sair da Conta</a>
             <br></br>
             <a href="./parametros_post_01.php">Cadastrar Produto</a>

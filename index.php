@@ -20,7 +20,8 @@
             }
 
             $_SESSION['username'] = $usuario['id'];
-            $_SESSION['name'] = $usuario['nome']
+          
+            header("Location: start.php");
            
         } else {
             echo "Usuário ou senha incorretos";
@@ -49,7 +50,7 @@
                 <label for="username" class="sr-only">Digite seu usuário: </label><br>
                 <input type="text" class="form-control" id="username" name="username" required autofocus></input><br>
                 <label for="password" class="sr-only">Digite sua senha: </label><br>
-                <input type="text" class="form-control" id="password" name="password" required autofocus></input><br><br>
+                <input type="text" class="form-control" id="senha" name="senha" required autofocus></input><br><br>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
                 <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
             </form>
