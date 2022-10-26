@@ -1,6 +1,16 @@
 <?php
-$servername = "127.0.0.1";
-$username = "root";
-$password = "123mudar";
-$dbname="bd_petshop";
+
+$host = 'localhost';
+$username = 'root';
+$dbname='bd_petshop';
+$password = '';
+
+// Criar Conexão
+$mysqli = new mysqli($host, $username, $password, $dbname);
+
+// Checar Conexão
+if ($mysqli->connect_errno) {
+    die("Falha ao conectar: " . $mysqli->connect_error);
+}
+
 ?>

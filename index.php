@@ -1,17 +1,31 @@
 <!-- 1) Tela de login, pega as váriáveis do arquivo dados_banco.php, para validar o login-->
 
 <?php
-    require_once('./dados_banco.php');
-    if ($_SERVER["REQUEST_METHOD"]=="POST"){
-        session_start();
-        if ($_POST['username']==$username and $_POST['password']==$password){
-            $_SESSION['loggedin']=TRUE;
+    include ('./dados_banco.php');
+    
+    if (isset($_POST['username']) || isset($_POST['senha'])){
+        $username = $mysqli->real_escape_string($_POST['username']);
+        $senha = $mysqli->real_escape_string($_POST['senha']);
 
-            $_SESSION['username']='Isabela';
-            header("location: start.php");
+        $sql_code = "SELECT * FROM usuarios WHERE username = '$username' AND senha = '$senha'";
+        $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
+
+        $quantidade = $sql_query->num_rows;
+
+        if($quantidade == 1){
+           
+            $usuario = $sql_query->fetch_assoc();
+            if(!isset($_SESSION)){
+                session_start();
+            }
+
+            $_SESSION['username'] = $usuario['id'];
+            $_SESSION['name'] = $usuario['nome']
+           
         } else {
-            $_SESSION['loggedin']=FALSE;
+            echo "Usuário ou senha incorretos";
         }
+
     }
 ?>
 
@@ -30,7 +44,6 @@
 </head>
 <body class="text-center bg-light">
     <div class="d-flex justify-content-center">
-        
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="form-signin">
                 <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
                 <label for="username" class="sr-only">Digite seu usuário: </label><br>
