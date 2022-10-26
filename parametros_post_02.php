@@ -15,8 +15,10 @@
     <div class="container">
         <div class="py-5 text-center">
             <?php
-            include ('./dados_banco.php');
-            
+            require_once './dados_banco.php';
+
+            $mysqli = new mysqli($host, $username, $password, $dbname);
+
             function validar_post($dado_enviado){
                 if(isset($dado_enviado) and $dado_enviado <> ""){
                     return TRUE;
@@ -25,20 +27,23 @@
             }
 
             if(validar_post($_POST['nomep']) && validar_post($_POST['quantidadees']) && validar_post($_POST['valuep']) && validar_post($_POST['featuresp'])){
-                echo '<br><br>';
-                echo 'Nome: '.$_POST['nomep'];
-                echo '<br><br>';
-                echo 'Quantidade: '.$_POST['quantidadees'];
-                echo '<br><br>';
-                echo 'Preço: '.$_POST['valuep'];
-                echo '<br><br>';
-                echo 'Características: '.$_POST['featuresp'];
-                $mysqli->query ("INSERT INTO produtos (nome, quantidade, preco, caracteristica) 
-                VALUES (".$_POST['nomep'].",".$_POST['quantidadees'].",".$_POST['valuep'].",".$_POST['featuresp'].")");
-               
                 
-            }
+                $nome = $_POST['nomep'];
+                $quantidade = $_POST['quantidadees'];
+                $valor = $_POST['valuep'];
+                $caract = $_POST['featuresp'];
+                $stmt = $mysqli->prepare("INSERT INTO produtos (produtoID, nome, quantidade, preco, caracteristica) VALUES (?,?,?,?,?)");
+                $stmt->bind_param(3, $nome, $quantidade, $valor, $caract);
 
+                if(!$stmt->execute())
+                {
+                    $erro = $stmt->error;
+                }
+                else
+                {
+                    $sucesso = "Dados cadastrados com sucesso!";
+                }
+            }
             ?>
         
             <br></br>
